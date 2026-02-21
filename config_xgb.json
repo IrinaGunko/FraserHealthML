@@ -1,0 +1,342 @@
+{
+  "_comment": "XGBoost config for 5 targets \u00d7 2 variants. Per-model feature_flags and resampler override global defaults.",
+  "global": {
+    "save_models": true,
+    "models_dir": "/Users/irynagunko/Downloads/SFU/FraserHealth/xgb_ff1/models",
+    "csv_path": "/Users/irynagunko/Downloads/SFU/FraserHealth/summary_per_file.csv",
+    "output_dir": "/Users/irynagunko/Downloads/SFU/FraserHealth/xgb_ff1",
+    "train_fraction": 0.8,
+    "random_state": 42,
+    "shap_samples": 300,
+    "_comment_flags": "Per-model feature_flags and resampler override these global defaults.",
+    "feature_flags": {
+      "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": false,
+      "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+      "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": false,
+      "USE_GLOBAL_RANK_MEDIAN_P5_P95": false,
+      "USE_NETWORK_COUNTS": true,
+      "USE_NETWORK_PCTS": false,
+      "USE_NET8_MEDIAN_P5_P95": false,
+      "USE_NET17_MEDIAN_P5_P95": true
+    },
+    "_comment_resampler": "Default resampler when not specified per model. Options: SMOTE, ADASYN, none, none.",
+    "resampler": "none",
+    "threshold": {
+      "mode": "f1",
+      "recall_targets": [
+        0.6
+      ],
+      "min_precision_for_max_recall": 0.6
+    },
+    "model_stats_plots": true,
+    "_comment_threshold": "Global default is f1. Per-model overrides use min_cost where the class imbalance ratio is low enough for the cost ratio to have effect. Rule: cost_fn > imbalance_ratio needed to push threshold lower. Models with imbalance >10x use f1 (cost tuning ineffective there)."
+  },
+  "models": {
+    "Abnormality": {
+      "strict": {
+        "label_map": "1_vs_4",
+        "_best_cv_auc": 0.8511,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": false,
+          "USE_NETWORK_COUNTS": true,
+          "USE_NETWORK_PCTS": false,
+          "USE_NET8_MEDIAN_P5_P95": false,
+          "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 906,
+          "learning_rate": 0.013082456784266465,
+          "max_depth": 10,
+          "min_child_weight": 19,
+          "subsample": 0.9208388095985653,
+          "colsample_bytree": 0.48277726627600903,
+          "reg_alpha": 0.0006557306747317239,
+          "reg_lambda": 1.0791317614412892e-08,
+          "gamma": 2.380590514604688
+        }
+      },
+      "relaxed": {
+        "label_map": "12_vs_34",
+        "_best_cv_auc": 0.7847,
+        "resampler": "none",
+        "feature_flags": {
+        "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": false, 
+        "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true, 
+        "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": false, 
+        "USE_GLOBAL_RANK_MEDIAN_P5_P95": false, 
+        "USE_NETWORK_COUNTS": true, 
+        "USE_NETWORK_PCTS": true, 
+        "USE_NET8_MEDIAN_P5_P95": false, 
+        "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 485,
+          "learning_rate": 0.026000059117302653,
+          "max_depth": 7,
+          "min_child_weight": 3,
+          "subsample": 0.9010984903770198,
+          "colsample_bytree": 0.35218545057583955,
+          "reg_alpha": 7.6204817861585425,
+          "reg_lambda": 0.08916674715636552,
+          "gamma": 0.993578407670862
+        }
+      }
+    },
+    "Focal_Epi": {
+      "strict": {
+        "label_map": "1_vs_4",
+        "_best_cv_auc": 0.766,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": true,
+          "USE_NETWORK_COUNTS": true,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": false,
+          "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 473,
+          "learning_rate": 0.024861422417896066,
+          "max_depth": 7,
+          "min_child_weight": 16,
+          "subsample": 0.9028252983383702,
+          "colsample_bytree": 0.4470973877329174,
+          "reg_alpha": 9.295861490143137,
+          "reg_lambda": 0.38855979367645305,
+          "gamma": 2.9958158128237518
+        },
+            "threshold": {
+              "mode": "youden"
+            }
+      },
+      "relaxed": {
+        "label_map": "12_vs_34",
+        "_best_cv_auc": 0.7244,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": true,
+          "USE_NETWORK_COUNTS": true,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": false,
+          "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 418,
+          "learning_rate": 0.04356237420066773,
+          "max_depth": 3,
+          "min_child_weight": 2,
+          "subsample": 0.6602804416240288,
+          "colsample_bytree": 0.30263432355974995,
+          "reg_alpha": 9.647696139957278,
+          "reg_lambda": 6.746777814061546,
+          "gamma": 0.4508183917489297
+        },
+            "threshold": {
+              "mode": "youden"
+            }
+      }
+    },
+    "Focal_Non_epi": {
+      "strict": {
+        "label_map": "1_vs_4",
+        "_best_cv_auc": 0.7618,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": false,
+          "USE_NETWORK_COUNTS": false,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": true,
+          "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 321,
+          "learning_rate": 0.014086530508341438,
+          "max_depth": 10,
+          "min_child_weight": 20,
+          "subsample": 0.8288299793322856,
+          "colsample_bytree": 0.37907332144174416,
+          "reg_alpha": 0.0019598241772255335,
+          "reg_lambda": 0.028252784170843315,
+          "gamma": 1.505741597611946
+        },
+        "threshold": {
+          "mode": "min_cost",
+          "cost_fn": 4,
+          "cost_fp": 1,
+          "_comment": "imbalance=3.7x, slope=0.93 at 4:1 \u2014 near-balanced, recovers recall"
+        }
+      },
+      "relaxed": {
+        "label_map": "12_vs_34",
+        "_best_cv_auc": 0.7065,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": false,
+          "USE_NETWORK_COUNTS": false,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": true,
+          "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 887,
+          "learning_rate": 0.010727048788171762,
+          "max_depth": 6,
+          "min_child_weight": 12,
+          "subsample": 0.9490087604035786,
+          "colsample_bytree": 0.3249178433973437,
+          "reg_alpha": 9.647180794329568,
+          "reg_lambda": 8.87914335710328,
+          "gamma": 1.1376070068229156
+        },
+        "threshold": {
+          "mode": "min_cost",
+          "cost_fn": 4,
+          "cost_fp": 1,
+          "_comment": "imbalance=3.4x, slope=0.86 at 4:1 \u2014 recall-favoring territory"
+        }
+      }
+    },
+    "Gen_Epi": {
+      "strict": {
+        "label_map": "1_vs_4",
+        "_best_cv_auc": 0.7519,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": true,
+          "USE_NETWORK_COUNTS": false,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": false,
+          "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 974,
+          "learning_rate": 0.01609037845749139,
+          "max_depth": 10,
+          "min_child_weight": 20,
+          "subsample": 0.7734942910835931,
+          "colsample_bytree": 0.8024221872389928,
+          "reg_alpha": 9.8194663539311e-07,
+          "reg_lambda": 0.0011315562295853847,
+          "gamma": 1.9726386714375284
+        },
+            "threshold": {
+              "mode": "youden"
+            }
+      },
+      "relaxed": {
+        "label_map": "12_vs_34",
+        "_best_cv_auc": 0.7508,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": false,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": true,
+          "USE_NETWORK_COUNTS": false,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": false,
+          "USE_NET17_MEDIAN_P5_P95": true
+        },
+        "hyperparams": {
+          "n_estimators": 719,
+          "learning_rate": 0.015218580547299453,
+          "max_depth": 10,
+          "min_child_weight": 19,
+          "subsample": 0.8383539999594904,
+          "colsample_bytree": 0.8351780869189671,
+          "reg_alpha": 2.4898992997249395e-07,
+          "reg_lambda": 5.829053116907253,
+          "gamma": 2.0046918308932353
+        },
+            "threshold": {
+              "mode": "youden"
+            }
+      }
+    },
+    "Gen_Non_epi": {
+      "strict": {
+        "label_map": "1_vs_4",
+        "_best_cv_auc": 0.9147,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": true,
+          "USE_NETWORK_COUNTS": true,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": true,
+          "USE_NET17_MEDIAN_P5_P95": false
+        },
+        "hyperparams": {
+          "n_estimators": 765,
+          "learning_rate": 0.021836160892440684,
+          "max_depth": 9,
+          "min_child_weight": 18,
+          "subsample": 0.7231915967358203,
+          "colsample_bytree": 0.39070767823782343,
+          "reg_alpha": 1.2822835644335875e-07,
+          "reg_lambda": 2.2261431603897654e-05,
+          "gamma": 3.717989152816179
+        },
+        "threshold": {
+          "mode": "min_cost",
+          "cost_fn": 5,
+          "cost_fp": 1,
+          "_comment": "imbalance=3.4x, slope=0.86 at 4:1 \u2014 recall-favoring territory"
+        }
+      },
+      "relaxed": {
+        "label_map": "12_vs_34",
+        "_best_cv_auc": 0.847,
+        "resampler": "none",
+        "feature_flags": {
+          "USE_GLOBAL_ALPHA_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_APERIODIC_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_GRADIENT_MEDIAN_P5_P95": true,
+          "USE_GLOBAL_RANK_MEDIAN_P5_P95": true,
+          "USE_NETWORK_COUNTS": true,
+          "USE_NETWORK_PCTS": true,
+          "USE_NET8_MEDIAN_P5_P95": true,
+          "USE_NET17_MEDIAN_P5_P95": false
+        },
+        "hyperparams": {
+          "n_estimators": 924,
+          "learning_rate": 0.015305087035812865,
+          "max_depth": 10,
+          "min_child_weight": 19,
+          "subsample": 0.8155700472038723,
+          "colsample_bytree": 0.4422705617245055,
+          "reg_alpha": 5.3155720344128866e-08,
+          "reg_lambda": 8.459330631727916,
+          "gamma": 2.6327449658406077
+        },
+        "threshold": {
+          "mode": "min_cost",
+          "cost_fn": 4,
+          "cost_fp": 1,
+          "_comment": "imbalance=3.4x, slope=0.86 at 4:1 \u2014 recall-favoring territory"
+        }
+      }
+    }
+  }
+}

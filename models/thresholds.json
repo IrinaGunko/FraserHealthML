@@ -1,0 +1,12 @@
+{
+  "Abnormality_strict": 0.4203,
+  "Abnormality_relaxed": 0.4524,
+  "Focal_Epi_strict": 0.1529,
+  "Focal_Epi_relaxed": 0.4784,
+  "Focal_Non_epi_strict": 0.4941,
+  "Focal_Non_epi_relaxed": 0.4403,
+  "Gen_Epi_strict": 0.2401,
+  "Gen_Epi_relaxed": 0.2715,
+  "Gen_Non_epi_strict": 0.4545,
+  "Gen_Non_epi_relaxed": 0.4589
+}

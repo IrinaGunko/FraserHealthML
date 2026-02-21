@@ -1,0 +1,253 @@
+lh_17Networks_LH_VisCent_Striate,Ventral,"Primary visual cortex (striate, V1) representing central (foveal) vision projects heavily to ventral occipitotemporal areas for object recognition​
+FRONTIERSIN.ORG
+. This foveal bias aligns with the ventral “what” pathway processing detailed form and identity​
+FRONTIERSIN.ORG
+."
+lh_17Networks_LH_VisCent_ExStr_1,Ventral,"Central extrastriate cortex (e.g., foveal V2/V3) emphasizes foveal vision and high-detail features​
+FRONTIERSIN.ORG
+. Such regions predominantly feed the ventral stream toward inferior temporal cortex to analyze object form/color (the “what” pathway)​
+PMC.NCBI.NLM.NIH.GOV
+​
+FRONTIERSIN.ORG
+."
+lh_17Networks_LH_VisCent_ExStr_2,Ventral,"Central extrastriate cortex (foveal visual areas) – same network as VisCent_ExStr_1 – is involved in fine-detail vision near gaze center​
+FRONTIERSIN.ORG
+. Its strong connectivity with ventral occipital-temporal regions (e.g., V4/IT) indicates a ventral stream role in object identification​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_VisPeri_Striate,Dorsal,"Peripheral primary visual cortex (peripheral V1) covers wide-field, coarse vision​
+FRONTIERSIN.ORG
+. Emphasis on visual periphery and motion makes it integral to the dorsal “where/how” pathway for spatial awareness and action guidance​
+FRONTIERSIN.ORG
+​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_VisPeri_ExStrInf,Dorsal,"Peripheral inferior extrastriate cortex (ventral occipital areas processing upper-field periphery) contributes to motion/spatial analysis rather than object form. Despite its ventral location, its focus on peripheral vision and connectivity (e.g., with MT/MST) place it in the dorsal stream for visually guided action​
+FRONTIERSIN.ORG
+​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_VisPeri_ExStrSup,Dorsal,"Peripheral superior extrastriate cortex (dorsal occipital, e.g. V3A/V3B) processes wide-field motion and space​
+FRONTIERSIN.ORG
+. These regions are key nodes of the dorsal stream (specialized for spatial vision and motion, “where” pathway) projecting to parietal cortex​
+PMC.NCBI.NLM.NIH.GOV
+​
+FRONTIERSIN.ORG
+."
+lh_17Networks_LH_SomMotA_1,Dorsal,"Somatomotor Network A (dorsal somatosensory-motor cortex, e.g. upper limb/trunk area) interacts with dorsal visuomotor pathways for guiding actions​
+PMC.NCBI.NLM.NIH.GOV
+. Its role in spatially guided movement (reaching/navigation) links it to the dorsal stream’s visuomotor control system​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_SomMotA_2,Dorsal,"Somatomotor Network A parcel (dorsal sensorimotor cortex) – like SomMotA_1 – is involved in body-centric spatial processing (e.g., reaching) and integrates visual inputs for action​
+PMC.NCBI.NLM.NIH.GOV
+. This dorsal somatomotor region relies on dorsal stream information about object location for accurate movements​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_SomMotB_Cent,Ventral,"Somatomotor Network B (ventral central sulcus region, face/tongue area) is associated with ventral cortical systems. It is adjacent to perisylvian cortex (mouth, speech) and auditory areas, aligning more with ventral stream networks for multimodal object (e.g. face) processing rather than spatial guidance​
+RESEARCHGATE.NET
+​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SomMotB_S2,Ventral,"Secondary somatosensory cortex (SII in parietal operculum) is part of SomMotB and is strongly connected with insula and temporal regions (for tactile-object integration)​
+EN.WIKIPEDIA.ORG
+. Its role in identifying object qualities via touch/audiovisual integration ties it to ventral stream functions (the “what” aspects of stimuli)​
+EN.WIKIPEDIA.ORG
+."
+lh_17Networks_LH_SomMotB_Ins,Ventral,"Anterior insula (SomMotB_Ins) is a core node of the salience/ventral attention network​
+JOURNALS.PHYSIOLOGY.ORG
+. It integrates internal bodily signals and sensory cues, and drives stimulus-driven attention, consistent with ventral stream circuits for identifying salient “what” information rather than spatial orienting​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SomMotB_Aud,Ventral,"Auditory cortex region (SomMotB_Aud, superior temporal) lies in the lateral temporal lobe and processes sound, often co-activating with ventral temporal stream areas for audiovisual object recognition (e.g. speech, voices)​
+EN.WIKIPEDIA.ORG
+. Thus, it aligns with ventral networks concerned with identifying stimuli rather than visuospatial action."
+lh_17Networks_LH_DorsAttnA_TempOcc,Dorsal,"Temporal-occipital junction (likely area MT+ in lateral occipital temporal cortex) is a motion-sensitive region feeding the dorsal pathway​
+PMC.NCBI.NLM.NIH.GOV
+. MT/V5 and adjacent areas specialize in motion/depth and project to parietal cortex​
+PMC.NCBI.NLM.NIH.GOV
+, making this DorsAttnA_TempOcc parcel a dorsal stream node for “where/how” visual motion processing."
+lh_17Networks_LH_DorsAttnA_ParOcc,Dorsal,"Parieto-occipital cortex (near precuneus/V6) in DorsAttnA is involved in visuo-spatial integration and scene processing – a dorsal stream function​
+FRONTIERSIN.ORG
+. It connects occipital and superior parietal regions for spatial orientation in vision (part of the dorsal attention network for space and action)​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_DorsAttnA_SPL,Dorsal,"Superior Parietal Lobule (SPL) is a classic dorsal stream region for spatial attention and visually guided reaching​
+SCIENCEDIRECT.COM
+. SPL (DorsAttnA_SPL) lies in the dorsal attention network, encoding object location and guiding movements (“where/how” pathway)​
+SCIENCEDIRECT.COM
+​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DorsAttnB_TempOcc,Dorsal,"Another temporal-occipital parcel in DorsAttnB (likely MST or STS region) processes motion and peripheral stimuli, contributing to the dorsal stream​
+PMC.NCBI.NLM.NIH.GOV
+. These temporo-occipital areas connect with parietal cortex (e.g. LIP/VIP) for tracking moving objects in space, solidifying their dorsal stream role​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DorsAttnB_PostC,Dorsal,"Postcentral cortex parcel (likely area VIP in Brodmann 2v) integrates visual and tactile information for spatial perception in personal space​
+PMC.NCBI.NLM.NIH.GOV
+. Such multimodal parietal regions belong to the dorsal stream, supporting “where” computations (e.g., guiding hand-eye coordination)​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DorsAttnB_FEF,Dorsal,"Frontal Eye Field (FEF) in dorsal attention network drives eye movements and spatial attention​
+JOURNALS.PHYSIOLOGY.ORG
+. FEF is a known endpoint of the dorsal visual pathway (receiving input from IPS) and is crucial for the “where/how” stream in directing gaze and actions toward targets​
+PMC.NCBI.NLM.NIH.GOV
+​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_DorsAttnB_PrCv,Dorsal,"Precentral (ventral) parcel in DorsAttnB (likely dorsal premotor cortex) is involved in planning visually guided actions (like reaching) in space​
+JOURNALS.PHYSIOLOGY.ORG
+. As part of the dorsal frontoparietal network with FEF/IPS​
+JOURNALS.PHYSIOLOGY.ORG
+, it uses spatial visual information (“how” pathway) to coordinate motor responses."
+lh_17Networks_LH_SalVentAttnA_ParOper,Ventral,"Parietal Operculum parcel in Salience/Ventral Attention A (likely secondary somatosensory/vestibular area) detects salient somatosensory events. It works in the ventral attention “circuit-breaker” network​
+RESEARCHGATE.NET
+​
+JOURNALS.PHYSIOLOGY.ORG
+, shifting attention to unexpected stimuli — a ventral-stream-like, stimulus-driven function."
+lh_17Networks_LH_SalVentAttnA_PrCv,Ventral,"Precentral gyrus parcel in SalVentAttnA (perhaps adjacent to ventral premotor cortex) engages in stimulus-driven reorienting of actions. It’s part of the ventral frontoparietal attention system​
+JOURNALS.PHYSIOLOGY.ORG
+, which interrupts ongoing activity to respond to salient “what” events, aligning with ventral stream attention control​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SalVentAttnA_Ins,Ventral,"Anterior insula in SalVentAttnA is a key salience network region orchestrating bottom-up attention to important stimuli​
+JOURNALS.PHYSIOLOGY.ORG
+. It has strong connections with limbic and ventral sensory areas and initiates ventral stream-driven alerting, consistent with ventral network (exogenous attention) function​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SalVentAttnA_ParMed,Ventral,"Medial parietal parcel in SalVentAttnA (possibly posterior mid-cingulate zone) is involved in autonomic/limbic aspects of salience. As part of the ventral attention (salience) network, it helps evaluate salient stimuli rather than mapping spatial layout, fitting ventral-stream emotional/contextual processing​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SalVentAttnA_FrMed,Ventral,"Frontal medial parcel in SalVentAttnA (likely dorsal anterior cingulate cortex) activates for stimulus-driven target detection​
+JOURNALS.PHYSIOLOGY.ORG
+. This region provides top-down control within the ventral attention/salience pathway, linking motivational significance to ventral stream cues (“what” is important)​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SalVentAttnB_IPL,Ventral,"Inferior Parietal Lobule (angular gyrus/TPJ) is a hallmark of the ventral attention network, detecting unexpected sensory events​
+JOURNALS.PHYSIOLOGY.ORG
+. This SalVentAttnB_IPL parcel corresponds to the temporoparietal junction, which is specialized for bottom-up reorienting to salient “what” stimuli (ventral stream of attention)​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SalVentAttnB_PFCd,Ventral,"Dorsal prefrontal cortex in SalVentAttnB (likely middle frontal gyrus) is part of the ventral frontoparietal network that responds to salient events​
+JOURNALS.PHYSIOLOGY.ORG
+. Although termed PFCd, here it participates in ventral attention, linking stimulus-driven inputs to executive processing (identifying and evaluating targets)​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SalVentAttnB_PFCl,Ventral,"Lateral prefrontal cortex (SalVentAttnB_PFCl) in ventral attention network engages during reorienting of attention​
+JOURNALS.PHYSIOLOGY.ORG
+. This ventrolateral PFC region (inf. frontal gyrus) is strongly connected to TPJ​
+JOURNALS.PHYSIOLOGY.ORG
+, serving the ventral stream function of detecting and responding to “what” stimuli."
+lh_17Networks_LH_SalVentAttnB_PFCv,Ventral,"Ventral prefrontal cortex (inferior frontal gyrus, PFCv) is a core of the ventral attention/salience network​
+JOURNALS.PHYSIOLOGY.ORG
+. It receives inputs from temporal visual areas and TPJ, allowing it to process salient “what” information and trigger appropriate responses, which is characteristic of ventral stream processing​
+PMC.NCBI.NLM.NIH.GOV
+​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_SalVentAttnB_OFC,Ventral,"Orbitofrontal cortex (SalVentAttnB_OFC) is involved in evaluating the significance of stimuli and is linked to ventral-stream sensory input​
+EN.WIKIPEDIA.ORG
+. OFC receives direct projections from inferior temporal visual areas​
+EN.WIKIPEDIA.ORG
+, highlighting its role in ventral networks (associating object identity with value/outcome)."
+lh_17Networks_LH_SalVentAttnB_PFCmp,Ventral,"Medial prefrontal cortex parcel in SalVentAttnB (PFCmp) likely corresponds to ventromedial PFC, which integrates emotional and stimulus-driven information (part of ventral attentional control). It is associated with the ventral stream insofar as it processes the motivational relevance of “what” stimuli rather than spatial targets​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_Limbic_TempPole,Ventral,"Temporal pole is a limbic integration area at the anterior end of the ventral visual stream. It receives high-level visual input (faces/objects) via inferotemporal cortex and limbic inputs​
+PMC.NCBI.NLM.NIH.GOV
+. As such, it processes the meaning and emotional significance of visual stimuli (a ventral stream, “what” function)​
+EN.WIKIPEDIA.ORG
+."
+lh_17Networks_LH_Limbic_OFC,Ventral,"Orbitofrontal cortex (limbic network) lies in the ventral frontal lobe and is strongly connected to inferotemporal visual areas and limbic structures​
+EN.WIKIPEDIA.ORG
+. Its role in evaluating objects’ reward/value and social/emotional meaning indicates a ventral stream association (using “what” information from vision)​
+EN.WIKIPEDIA.ORG
+."
+lh_17Networks_LH_ContA_Temp,Dorsal,"Control Network A – Temporal region (likely middle temporal gyrus) – participates in the dorsolateral frontoparietal executive network. It interacts with SPL/IPS and DLPFC in goal-directed tasks​
+JOURNALS.PHYSIOLOGY.ORG
+. Thus, even this temporal node functions in a dorsal-stream-related executive capacity (spatial working memory and action planning) rather than pure object analysis."
+lh_17Networks_LH_ContA_IPS,Dorsal,"Intraparietal sulcus (IPS) in Control A is part of the dorsal frontoparietal network for top-down attention and visuomotor control​
+JOURNALS.PHYSIOLOGY.ORG
+. IPS is a major dorsal stream hub encoding spatial relationships and linking vision to action (e.g., eye and hand movements)​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_ContA_PFCd,Dorsal,"Dorsal prefrontal cortex (PFCd) in Control A corresponds to dorsolateral PFC, which is the terminus of the dorsal stream carrying spatial/action information​
+PMC.NCBI.NLM.NIH.GOV
+. This region uses spatial visual input from parietal cortex to guide working memory and decision-making (a dorsal stream cognitive function)​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_ContA_PFCl,Dorsal,"Lateral prefrontal cortex (PFCl) in Control A network supports goal-directed behavior with strong connections to dorsal parietal regions. It contributes to spatial working memory and attention control​
+JOURNALS.PHYSIOLOGY.ORG
+. Its reliance on “where/how” information (locations, spatial context) aligns with dorsal stream processing."
+lh_17Networks_LH_ContA_PFClv,Dorsal,"Ventrolateral prefrontal cortex in Control A (PFClv) still operates within a dorsolateral-dominated control circuit. It likely interfaces between DLPFC and ventral PFC, but given its inclusion in ContA, it subserves action-oriented executive functions (e.g., spatial cue processing), thus leaning toward dorsal stream influence​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_ContA_Cinga,Dorsal,"Anterior cingulate gyrus (Cingulate A) in Control A is part of the dorsal executive control circuit, often involved in monitoring actions and conflict. This dorsal midline region interacts with dorsal attention and motor areas to ensure goal-directed performance, fitting with dorsal stream-mediated action control​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_ContB_Temp,Ventral,"Control Network B – Temporal region (likely inferior/middle temporal) – is part of a ventrolateral frontoparietal control system. It may deal with integrating semantic or identity-related information into executive processes. Its location and network context suggest alignment with ventral-stream information (object and context knowledge) for cognitive control​
+RESEARCHGATE.NET
+."
+lh_17Networks_LH_ContB_IPL,Ventral,"Inferior parietal lobule in Control B (overlapping angular gyrus) links to ventrolateral PFC and is involved in contextual and conceptual aspects of tasks. IPL (angular gyrus) is more associated with ventral-stream functions like episodic memory retrieval and semantic processing (default/ventral systems) than with pure spatial processing​
+JOURNALS.PHYSIOLOGY.ORG
+."
+lh_17Networks_LH_ContB_PFCd,Ventral,"Dorsal PFC in Control B likely corresponds to a more ventrally-biased executive subnetwork. Although in PFCd, this node in ContB interacts with ventral frontal and temporal regions (as part of FPN-B). It may contribute to rule application or social cognitive tasks that rely on “what” content, aligning it with ventral-stream cognitive processing​
+RESEARCHGATE.NET
+."
+lh_17Networks_LH_ContB_PFCl,Ventral,"Lateral PFC in Control B works with TPJ and ventral temporal regions in a ventrolateral control network. It is implicated in goal-setting based on object/context cues (e.g., task rules involving stimulus identity). This emphasis on content (rather than space) indicates ventral stream linkage in guiding behavior​
+RESEARCHGATE.NET
+."
+lh_17Networks_LH_ContB_PFClv,Ventral,"Ventrolateral PFC (PFClv) in Control B is a cornerstone of the ventral executive network, concerned with integrating “what” information (language, object value, social cues) into decision-making​
+RESEARCHGATE.NET
+. Its processing of object-oriented and conceptual information (over spatial metrics) ties it to ventral-stream mediated control."
+lh_17Networks_LH_ContB_PFCmp,Ventral,"Medial prefrontal cortex in Control B (PFCmp) overlaps with ventromedial PFC, which integrates memory and affect into executive function. This region is more connected to ventral stream outputs (e.g., semantic and emotional context from temporal lobe) than to dorsal spatial data, supporting a ventral-stream-oriented role in the control network​
+EN.WIKIPEDIA.ORG
+."
+lh_17Networks_LH_ContC_pCun,Ventral,"Precuneus in Control Network C is part of the posterior medial cortex associated with the default-mode/limbic networks. It encodes contextual scenes and self-referential content rather than immediate spatial targets. Thus, it aligns with ventral stream-associated functions (constructing visual context and meaning) over dorsal action guidance​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_ContC_Cingp,Ventral,"Posterior cingulate (Cingp) in Control C is a hub of the default mode network, dealing with autobiographical memory and scene context. Its processing is oriented toward internal, identity-related visualizations (“what”/context) rather than guiding external actions, fitting ventral stream-type processing of enduring visual representations​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultA_IPL,Ventral,"Inferior parietal lobule (Angular gyrus) in DefaultA is involved in episodic memory and semantic aspects of visual scenes – classic ventral-stream-related functions (interpreting “what” and context)​
+PMC.NCBI.NLM.NIH.GOV
+. It is not primarily spatial; instead it helps represent contextual meaning of visual input, consistent with ventral pathway roles."
+lh_17Networks_LH_DefaultA_PFCd,Ventral,"Dorsomedial prefrontal cortex (PFCd in DefaultA, likely dorsal medial PFC) participates in self-referential thought and concept-driven prediction. It uses high-level contextual information (person, object identity, social cues) – ventral stream products – rather than visual spatial coordinates, aligning it with ventral processing streams​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultA_PCC,Ventral,"Posterior cingulate cortex (PCC) in DefaultA is central to the default mode network, integrating visual context and autobiographical memory. It deals with the meaningful “scene” or environment (places, familiar objects) and thus relies on ventral stream information about object identity and context in visual imagery​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultA_PFCm,Ventral,"Medial prefrontal cortex (PFCm) in DefaultA (ventromedial PFC) is involved in evaluating internally generated visual memories and stimulus value. It processes the significance of “what” information (people, objects, scenarios), a function supported by ventral visual stream inputs (rich semantic representations)​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultB_Temp,Ventral,"Lateral temporal cortex in DefaultB (e.g., middle temporal gyrus) supports semantic memory and language, handling the content of visual experiences (the “what”/meaning). This region receives ventral stream visual inputs (object and face information) and is firmly in the ventral pathway domain concerned with narrative and meaning​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultB_IPL,Ventral,"Inferior parietal (Angular gyrus) in DefaultB, like in DefaultA, is engaged in reconstructing scenes and recalling events (using ventral visual details). It encodes conceptual and memory aspects of vision rather than spatial coordinates, indicating a ventral stream association (focused on identity and context)​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultB_PFCd,Ventral,"Dorsal prefrontal in DefaultB likely corresponds to dorsomedial or dorsolateral PFC that coactivates with ventral regions during internally-focused thought. In the default network context, this PFC region manipulates the content of thoughts (people, objects, plans) which draws on ventral visual stream inputs (the “what” details in memory)​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultB_PFCl,Ventral,"Lateral PFC in DefaultB (possibly middle frontal gyrus) is part of a default/controlled network concerned with social and semantic reasoning. It utilizes ventral stream information (factual and visual detail from temporal cortex) to simulate scenarios, as opposed to guiding immediate spatial actions, hence classified as ventral-related​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultB_PFCv,Ventral,"Ventral PFC (DefaultB_PFCv, inferior frontal) is involved in language and semantic retrieval within the default network. It processes object and conceptual knowledge (e.g., naming, semantics) reliant on ventral stream inputs from temporal lobe​
+EN.WIKIPEDIA.ORG
+. Thus it operates on “what” content from vision, characteristic of ventral stream cognition."
+lh_17Networks_LH_DefaultC_IPL,Ventral,"Inferior parietal (DefaultC_IPL, likely angular/supramarginal) is part of a default subnetwork linking to medial temporal lobe (PHC). It helps integrate contextual visuals (places, events) with memory – a ventral stream function centered on “what and where in context” rather than real-time spatial guidance​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultC_Rsp,Ventral,"Retrosplenial cortex (DefaultC_Rsp) processes scenes, places, and contextual visual details, and is strongly connected to parahippocampal (place) cortex. It is a high-order association area that encodes stable visual context (landmarks, layouts) – consistent with ventral stream’s role in identifying and remembering “what” in an environment​
+PMC.NCBI.NLM.NIH.GOV
+."
+lh_17Networks_LH_DefaultC_PHC,Ventral,"Parahippocampal cortex (DefaultC_PHC) encodes visual scenes and contextual cues (e.g., places, familiar layouts) as part of memory. It is a direct extension of the ventral visual stream into medial temporal lobe​
+PMC.NCBI.NLM.NIH.GOV
+, specialized for the “what” of scene context (locations recognized by appearance), not for online spatial navigation (dorsal)."
+lh_17Networks_LH_TempPar,Ventral,"‘TempPar’ (temporal-parietal network) corresponds to the ventral attention network’s temporoparietal junction component​
+JOURNALS.PHYSIOLOGY.ORG
+. It specializes in detecting unexpected external stimuli (at the TPJ) and coupling to ventral frontal cortex. This function – stimulus-driven reorienting to “what” occurred – places TempPar in the ventral stream of attention​
+JOURNALS.PHYSIOLOGY.ORG
+."
