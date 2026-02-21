@@ -1,16 +1,7 @@
 #!/usr/bin/env python3
-"""
-app.py  —  EEG Feature Extraction Demo
-Streamlit app: user picks a demo HDF5 or uploads their own,
-pipeline extracts per-ROI features, result CSV is downloadable.
 
-Run:
-    streamlit run app.py
-"""
 
-import io
 import logging
-import os
 import tempfile
 import time
 from pathlib import Path
@@ -25,9 +16,6 @@ from pipeline.predict import load_models, predict
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# ══════════════════════════════════════════════════════════════════════════════
-# DEMO FILE REGISTRY
-# ══════════════════════════════════════════════════════════════════════════════
 
 BASE_DIR   = Path(__file__).parent
 MODELS_DIR = BASE_DIR / "models"
@@ -97,10 +85,6 @@ SCORE_COLORS = {1: "🟢", 2: "🟡", 3: "🟠", 4: "🔴"}
 TARGETS = ["Abnormality", "Focal_Epi", "Focal_Non_epi", "Gen_Epi", "Gen_Non_epi"]
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# PAGE CONFIG
-# ══════════════════════════════════════════════════════════════════════════════
-
 st.set_page_config(
     page_title="EEG Feature Extraction",
     page_icon="🧠",
@@ -114,12 +98,26 @@ st.markdown(
     "(Fraser Health / Schaefer 400 atlas). "
     "Select a demo recording or upload your own `.hdf5` file."
 )
+
+with st.expander("ℹ️ About / Authors", expanded=False):
+    st.markdown(
+        """
+        **Authors**
+
+        Iryna Gunko ¹ &nbsp;·&nbsp; Vasily A. Vakorin ¹² \* &nbsp;·&nbsp;
+        Alexander Moiseev ¹ &nbsp;·&nbsp; Sam M. Doesburg ¹ &nbsp;·&nbsp; George Medvedev ²
+
+        <sup>¹</sup> Department of Biomedical Physiology and Kinesiology,
+        Simon Fraser University, Burnaby, Canada  
+        <sup>²</sup> Royal Columbian Hospital, Fraser Health Authority,
+        New Westminster, Canada  
+        <sup>\*</sup> Correspondence: iryna_gunko@sfu.ca &nbsp;·&nbsp; vasily_vakorin@sfu.ca
+        """,
+        unsafe_allow_html=True,
+    )
+
 st.divider()
 
-
-# ══════════════════════════════════════════════════════════════════════════════
-# SIDEBAR — file selection
-# ══════════════════════════════════════════════════════════════════════════════
 
 with st.sidebar:
     st.header("📂 Select Input File")
@@ -129,21 +127,24 @@ with st.sidebar:
         index=0,
     )
 
-    h5_path     = None
-    demo_scores = None
-    file_label  = None
+    h5_path          = None
+    demo_scores      = None
+    file_label       = None
+
+    _file_change_key = None
 
     if source == "Use demo file":
-        demo_labels = [d["label"] for d in DEMO_FILES]
+        demo_labels  = [d["label"] for d in DEMO_FILES]
         selected_idx = st.selectbox(
             "Choose a demo recording",
             range(len(demo_labels)),
             format_func=lambda i: demo_labels[i],
         )
-        demo        = DEMO_FILES[selected_idx]
-        h5_path     = str(demo["path"])
-        demo_scores = demo["scores"]
-        file_label  = demo["label"]
+        demo             = DEMO_FILES[selected_idx]
+        h5_path          = str(demo["path"])
+        demo_scores      = demo["scores"]
+        file_label       = demo["label"]
+        _file_change_key = h5_path          # absolute path — always stable
 
         st.markdown(f"**{demo['label']}**")
         st.caption(demo["description"])
@@ -166,13 +167,18 @@ with st.sidebar:
             help="Fraser Health format: must contain 'label_tcs' and 'label_names' datasets.",
         )
         if uploaded:
-            # Write to a temp file so h5py can open it by path
-            tmp = tempfile.NamedTemporaryFile(
-                suffix=".hdf5", delete=False)
-            tmp.write(uploaded.read())
-            tmp.flush()
-            tmp.close()
-            h5_path    = tmp.name
+
+            _file_change_key = f"upload::{uploaded.name}"
+            _tmp_key         = f"_upload_tmp_{uploaded.name}"
+
+            if _tmp_key not in st.session_state:
+                tmp = tempfile.NamedTemporaryFile(suffix=".hdf5", delete=False)
+                tmp.write(uploaded.read())
+                tmp.flush()
+                tmp.close()
+                st.session_state[_tmp_key] = tmp.name
+
+            h5_path    = st.session_state[_tmp_key]
             file_label = uploaded.name
             st.success(f"Uploaded: **{uploaded.name}**")
 
@@ -185,54 +191,78 @@ with st.sidebar:
     )
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# MAIN PANEL — results
-# ══════════════════════════════════════════════════════════════════════════════
+if st.session_state.get("_last_file_key") != _file_change_key:
+    for _k in ("pipeline_df", "pipeline_csv", "pipeline_elapsed",
+                "summary_df", "summary_csv", "subject_id", "preds_df"):
+        st.session_state.pop(_k, None)
+    st.session_state["_last_file_key"] = _file_change_key
 
-if not run_btn:
+# ── Show placeholder until first run ─────────────────────────────────────────
+if not run_btn and "pipeline_df" not in st.session_state:
     st.info("👈 Select a file in the sidebar and click **Process File**.")
     st.stop()
 
-# ── Progress bar ──────────────────────────────────────────────────────────────
-st.subheader(f"Processing: {file_label}")
-progress_bar  = st.progress(0, text="Starting pipeline…")
-status_text   = st.empty()
-start_time    = time.time()
 
-def update_progress(current: int, total: int):
-    pct  = current / total
-    elapsed = time.time() - start_time
-    eta  = (elapsed / current * (total - current)) if current > 0 else 0
-    progress_bar.progress(pct, text=f"Parcel {current}/{total} — ETA {eta:.0f}s")
-    status_text.caption(f"Fitting SpectralModel… {current}/{total} parcels")
+# ── Stage 2: Run pipeline (skip when results are already cached) ──────────────
+if run_btn and "pipeline_df" not in st.session_state:
+    st.subheader(f"Processing: {file_label}")
+    progress_bar = st.progress(0, text="Starting pipeline…")
+    status_text  = st.empty()
+    start_time   = time.time()
 
-# ── Run pipeline ──────────────────────────────────────────────────────────────
-with st.spinner("Running specparam on all parcels…"):
-    try:
-        df = run_pipeline(
-            h5_path=h5_path,
-            progress_callback=update_progress,
-        )
+    def update_progress(current: int, total: int):
+        pct     = current / total
         elapsed = time.time() - start_time
-        progress_bar.progress(1.0, text=f"Done in {elapsed:.1f}s")
-        status_text.empty()
-    except Exception as e:
-        progress_bar.empty()
-        status_text.empty()
-        st.error(f"Pipeline failed: {e}")
-        logger.exception("Pipeline error")
+        eta     = (elapsed / current * (total - current)) if current > 0 else 0
+        progress_bar.progress(pct, text=f"Parcel {current}/{total} — ETA {eta:.0f}s")
+        status_text.caption(f"Fitting SpectralModel… {current}/{total} parcels")
+
+    with st.spinner("Running specparam on all parcels…"):
+        try:
+            df      = run_pipeline(h5_path=h5_path, progress_callback=update_progress)
+            elapsed = time.time() - start_time
+            progress_bar.progress(1.0, text=f"Done in {elapsed:.1f}s")
+            status_text.empty()
+        except Exception as e:
+            progress_bar.empty()
+            status_text.empty()
+            st.error(f"Pipeline failed: {e}")
+            logger.exception("Pipeline error")
+            st.stop()
+
+    if df.empty:
+        st.warning("Pipeline completed but no alpha peaks were found in this recording.")
         st.stop()
 
-# ── Empty result guard ────────────────────────────────────────────────────────
-if df.empty:
-    st.warning("Pipeline completed but no alpha peaks were found in this recording.")
-    st.stop()
+    # Encode CSV once and cache alongside the dataframe
+    st.session_state["pipeline_df"]      = df
+    st.session_state["pipeline_csv"]     = df.to_csv(index=False).encode("utf-8")
+    st.session_state["pipeline_elapsed"] = elapsed
+
+# ── Retrieve cached pipeline results ─────────────────────────────────────────
+df           = st.session_state["pipeline_df"]
+pipeline_csv = st.session_state["pipeline_csv"]
+elapsed      = st.session_state["pipeline_elapsed"]
+
+subject_id_s = df["subject_id"].iloc[0] if "subject_id" in df.columns else "unknown"
 
 st.success(
     f"✅ Extracted **{len(df):,} rows** "
     f"({df['label'].nunique()} parcels with alpha peaks) "
     f"in {elapsed:.1f}s"
 )
+
+# ── Download: per-ROI feature table (specparam + gradients, before collapsing) ─
+st.download_button(
+    label="⬇️ Download Per-ROI Feature Table CSV",
+    data=pipeline_csv,
+    file_name=f"{subject_id_s}_per_roi_features.csv",
+    mime="text/csv",
+    help="Full per-parcel specparam output merged with gradient coordinates — "
+         "one row per ROI alpha peak, before collapsing into the summary vector.",
+    width='stretch',
+)
+
 st.divider()
 
 # ── Stage 3: Summarization ────────────────────────────────────────────────────
@@ -240,44 +270,50 @@ st.subheader("🔢 Summary Feature Vector")
 st.caption("Collapses per-ROI rows into a single row for XGBoost inference "
            "(dominant alpha peak per parcel, global + per-network stats).")
 
-with st.spinner("Building summary feature vector..."):
-    try:
-        df_summary = summarize(df)
-        n_cols = len(df_summary.columns)
-        n_nan  = df_summary.isna().sum().sum()
-        st.success(
-            f"✅ Summary vector: **1 row × {n_cols} features** "
-            f"({n_nan} NaN values — expected for missing subject metadata)"
-        )
+if "summary_df" not in st.session_state:
+    with st.spinner("Building summary feature vector..."):
+        try:
+            df_summary = summarize(df)
+            st.session_state["summary_df"]  = df_summary
+            st.session_state["summary_csv"] = df_summary.to_csv(index=False).encode("utf-8")
+            st.session_state["subject_id"]  = subject_id_s
+        except Exception as e:
+            st.error(f"Summarization failed: {e}")
+            import traceback
+            st.code(traceback.format_exc())
+            st.stop()
 
-        # Quick breakdown
-        col_a, col_b, col_c = st.columns(3)
-        global_feat_cols  = [c for c in df_summary.columns
-                             if any(c.startswith(p) for p in
-                                    ['alpha_peak','aperiodic','T1T2','G1.fMRI',
-                                     'Evolution','Allometric','PET','CBF','PC1',
-                                     'BigBrain','Cortical','averagerank','finalrank'])
-                             and not c.startswith('net')]
-        net17_cols = [c for c in df_summary.columns if c.startswith('net17_')]
-        net8_cols  = [c for c in df_summary.columns if c.startswith('net8_')]
-        col_a.metric("Global features",    len(global_feat_cols))
-        col_b.metric("Net-17 features",    len(net17_cols))
-        col_c.metric("Net-8 features",     len(net8_cols))
+df_summary   = st.session_state["summary_df"]
+summary_csv  = st.session_state["summary_csv"]
+subject_id_s = st.session_state.get("subject_id", subject_id_s)
 
-        # Download summary CSV
-        summary_csv   = df_summary.to_csv(index=False).encode("utf-8")
-        subject_id_s  = df["subject_id"].iloc[0] if "subject_id" in df.columns else "unknown"
-        st.download_button(
-            label="⬇️ Download Summary Feature Vector CSV",
-            data=summary_csv,
-            file_name=f"{subject_id_s}_summary_vector.csv",
-            mime="text/csv",
-            width='stretch',
-        )
-    except Exception as e:
-        st.error(f"Summarization failed: {e}")
-        import traceback
-        st.code(traceback.format_exc())
+n_cols = len(df_summary.columns)
+n_nan  = df_summary.isna().sum().sum()
+st.success(
+    f"✅ Summary vector: **1 row × {n_cols} features** "
+    f"({n_nan} NaN values — expected for missing subject metadata)"
+)
+
+col_a, col_b, col_c = st.columns(3)
+global_feat_cols = [c for c in df_summary.columns
+                    if any(c.startswith(p) for p in
+                           ['alpha_peak','aperiodic','T1T2','G1.fMRI',
+                            'Evolution','Allometric','PET','CBF','PC1',
+                            'BigBrain','Cortical','averagerank','finalrank'])
+                    and not c.startswith('net')]
+net17_cols = [c for c in df_summary.columns if c.startswith('net17_')]
+net8_cols  = [c for c in df_summary.columns if c.startswith('net8_')]
+col_a.metric("Global features", len(global_feat_cols))
+col_b.metric("Net-17 features", len(net17_cols))
+col_c.metric("Net-8 features",  len(net8_cols))
+
+st.download_button(
+    label="⬇️ Download Summary Feature Vector CSV",
+    data=summary_csv,
+    file_name=f"{subject_id_s}_summary_vector.csv",
+    mime="text/csv",
+    width='stretch',
+)
 
 st.divider()
 
@@ -287,11 +323,13 @@ st.subheader("🤖 XGBoost Model Predictions")
 registry = get_model_registry()
 if registry is None:
     st.warning("⚠️ No models found — expected at `models/` in the project folder.")
-elif df_summary is not None and not df_summary.empty:
-    with st.spinner("Running 10 models..."):
-        df_preds = predict(df_summary, registry)
+else:
+    if "preds_df" not in st.session_state:
+        with st.spinner("Running 10 models..."):
+            st.session_state["preds_df"] = predict(df_summary, registry)
 
-    # Display as a styled table grouped by target
+    df_preds = st.session_state["preds_df"]
+
     TARGETS_ORDER = ["Abnormality", "Focal_Epi", "Focal_Non_epi", "Gen_Epi", "Gen_Non_epi"]
     TARGET_LABELS = {
         "Abnormality":   "Overall Abnormality",
@@ -306,9 +344,9 @@ elif df_summary is not None and not df_summary.empty:
         col.markdown(f"**{TARGET_LABELS[target]}**")
         for _, row in df_preds[df_preds["target"] == target].iterrows():
             variant_label = "Strict (1 vs 4)" if row["variant"] == "strict" else "Relaxed (1-2 vs 3-4)"
-            prob = row["probability"]
-            thr  = row["threshold"]
-            verdict = row["verdict"]
+            prob     = row["probability"]
+            thr      = row["threshold"]
+            verdict  = row["verdict"]
             prob_pct = f"{prob*100:.1f}%" if not (isinstance(prob, float) and prob != prob) else "N/A"
             col.markdown(
                 "\n\n".join([
