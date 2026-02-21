@@ -3,5 +3,5 @@ h5py>=3.11.0
 numpy>=1.26.0
 pandas>=2.2.0
 scipy>=1.13.0
-specparam>=1.0.0
+specparam>=2.0.0rc6
 matplotlib>=3.8.0
